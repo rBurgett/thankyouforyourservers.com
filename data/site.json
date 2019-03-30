@@ -1,0 +1,28 @@
+{
+  "BACKGROUND_COLOR": "#d0a116",
+  "SITE_NAME": "Thank You For Your Servers",
+  "SITE_URL": "https://thankyouforyourservers.com",
+  "META_DESCRIPTION": "A podcast for tech news and information from a libertarian perspective.",
+  "META_IMAGE": "tyfys.jpg",
+  "META_IMAGE_WIDTH": "665",
+  "META_IMAGE_HEIGHT": "665",
+  "FB_APP_ID": "427920024682357",
+  "MANAGING_EDITOR": "ryan@burgettweb.net (Ryan Burgett)",
+  "WEBMASTER": "ryan@burgettweb.net (Ryan Burgett)",
+  "COPYRIGHT": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License - http://creativecommons.org/licenses/by-nc/4.0/",
+  "LANGUAGE": "en",
+  "CATEGORIES": [
+    "Technology",
+    "Tech News",
+    "News & Politics"
+  ],
+  "AUTHOR": "Ryan Burgett",
+  "EMAIL": "ryan@burgettweb.net",
+  "ITUNES_CATEGORY": [
+    "Technology",
+    "Tech News",
+    "News & Politics"
+  ],
+  "ITUNES_IMAGE": "tyfys-2000.jpg",
+  "ITUNES_EXPLICIT": false
+}
