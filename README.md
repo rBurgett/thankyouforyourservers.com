@@ -1,2 +1,0 @@
-# thankyouforyourservers.com
-thankyouforyourservers.com

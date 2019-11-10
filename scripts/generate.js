@@ -4,6 +4,19 @@ const path = require('path');
 const Feed = require('podcast');
 const Markdown = require('markdown-it');
 const crypto = require('crypto');
+const generateVideos = require('./generate-videos');
+
+const flags = require('commander')
+  .option('--tor', true)
+  .parse(process.argv);
+
+const torBuild = flags.tor || false;
+
+const removeAnalytics = str => {
+  const analyticsPatt = /<.+Google\sAnalytics.+>(.|\n)+?<.+Google\sAnalytics.+>/;
+  if(!analyticsPatt.test(str)) return str;
+  return str.replace(analyticsPatt, '');
+};
 
 const markdown = new Markdown();
 
@@ -41,6 +54,14 @@ const getEpisodes = async function() {
   try {
 
     const siteData = await fs.readJsonAsync(path.join(dataDir, 'site.json'));
+
+    if(torBuild) {
+      siteData.SITE_URL = siteData.SITE_URL_TOR;
+      siteData.META_IMAGE = siteData.META_IMAGE_TOR;
+      siteData.META_IMAGE_WIDTH = siteData.META_IMAGE_WIDTH_TOR;
+      siteData.META_IMAGE_HEIGHT = siteData.META_IMAGE_HEIGHT_TOR;
+    }
+
     const indexData = await fs.readJsonAsync(path.join(dataDir, 'index.json'));
 
     await fs.ensureDirAsync(outputDir);
@@ -61,7 +82,8 @@ const getEpisodes = async function() {
     // Generate Feed and Episode pages
     {
 
-      const templateSource = await fs.readFileAsync(path.join(templatesDir, 'episode.hbs'), 'utf8');
+      let templateSource = await fs.readFileAsync(path.join(templatesDir, 'episode.hbs'), 'utf8');
+      if(torBuild) templateSource = removeAnalytics(templateSource);
       const episodeTemplate = Handlebars.compile(templateSource);
 
       const now = new Date().toISOString();
@@ -84,7 +106,7 @@ const getEpisodes = async function() {
           name: siteData.AUTHOR,
           email: siteData.EMAIL
         },
-        itunesCategory: siteData.CATEGORIES.map(c => ({text: c})),
+        itunesCategory: siteData.ITUNES_CATEGORY,
         itunesImage: `${siteData.SITE_URL}/images/${siteData.ITUNES_IMAGE}`,
         itunesExplicit: siteData.ITUNES_EXPLICIT
       });
@@ -99,7 +121,7 @@ const getEpisodes = async function() {
           url: `${siteData.SITE_URL}/${episode.NUMBER}`,
           description: episode.DESCRIPTION,
           guid: generateGuidFromString(episode.TITLE + episode.NUMBER),
-          date: birthtime,
+          date: episode.DATE || birthtime,
           enclosure: {
             url: `${siteData.SITE_URL}/audio/${episode.FILE}`,
             file: localFilePath
@@ -119,7 +141,8 @@ const getEpisodes = async function() {
 
       // Generate index.html
       {
-        const indexSource = await fs.readFileAsync(path.join(templatesDir, 'index.hbs'), 'utf8');
+        let indexSource = await fs.readFileAsync(path.join(templatesDir, 'index.hbs'), 'utf8');
+        if(torBuild) indexSource = removeAnalytics(indexSource);
         const indexTemplate = Handlebars.compile(indexSource);
         const output = indexTemplate(Object.assign({}, siteData, indexData, { episodes }));
         await fs.writeFileAsync(path.join(outputDir, 'index.html'), output, 'utf8');
@@ -127,6 +150,14 @@ const getEpisodes = async function() {
 
       const rssFeed = feed.buildXml('  ');
       await fs.writeFileAsync(path.join(outputDir, 'feed.rss'), rssFeed, 'utf8');
+    }
+
+    if(torBuild) {
+      const faviconPath = path.join(outputDir, 'favicon.ico');
+      await fs.removeAsync(faviconPath);
+      await fs.moveAsync(path.join(outputDir, 'favicon_sm.ico'), faviconPath);
+    } else {
+      // await generateVideos();
     }
 
   } catch(err) {

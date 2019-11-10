@@ -1,27 +1,30 @@
 {
-  "BACKGROUND_COLOR": "#d0a116",
+  "BACKGROUND_COLOR": "#fff",
   "SITE_NAME": "Thank You For Your Servers",
   "SITE_URL": "https://thankyouforyourservers.com",
+  "ITUNES_LINK": "https://podcasts.apple.com/us/podcast/thank-you-for-your-servers/id1462656911",
+  "PATREON_LINK": "",
+  "FACEBOOK_LINK": "https://www.facebook.com/thaddeus.preston",
+  "TWITTER_LINK": "https://twitter.com/nickwaye",
   "META_DESCRIPTION": "A podcast for tech news and information from a libertarian perspective.",
   "META_IMAGE": "tyfys.jpg",
   "META_IMAGE_WIDTH": "665",
   "META_IMAGE_HEIGHT": "665",
-  "FB_APP_ID": "427920024682357",
-  "MANAGING_EDITOR": "ryan@burgettweb.net (Ryan Burgett)",
-  "WEBMASTER": "ryan@burgettweb.net (Ryan Burgett)",
+  "FB_APP_ID": "",
+  "MANAGING_EDITOR": "ryan@mlganetwork.com (Ryan Burgett)",
+  "WEBMASTER": "ryan@mlganetwork.com (Ryan Burgett)",
   "COPYRIGHT": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License - http://creativecommons.org/licenses/by-nc/4.0/",
   "LANGUAGE": "en",
   "CATEGORIES": [
-    "Technology",
-    "Tech News",
-    "News & Politics"
+    "Tech News"
   ],
-  "AUTHOR": "Ryan Burgett",
-  "EMAIL": "ryan@burgettweb.net",
+  "AUTHOR": "MLGA Network",
+  "EMAIL": "ryan@mlganetwork.com",
   "ITUNES_CATEGORY": [
-    "Technology",
-    "Tech News",
-    "News & Politics"
+    {"text": "News", "subcats": [
+      {"text":  "Tech News"}]
+    },
+    {"text": "Technology"}
   ],
   "ITUNES_IMAGE": "tyfys-2000.jpg",
   "ITUNES_EXPLICIT": false
