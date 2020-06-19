@@ -11,5 +11,3 @@
 [Videos, threats, but few signs protests have been stoked by 'outsider' extremist groups](https://www.nbcnews.com/tech/security/videos-threats-few-signs-protests-have-been-stoked-outsider-extremist-n1220451)
 
 [Snapchat will no longer promote Trump after comments that incited ‘racial violence and injustice’](https://venturebeat.com/2020/06/04/snapchat-will-no-longer-promote-trump-after-comments-that-incited-racial-violence-and-injustice/)
-
-[]()
