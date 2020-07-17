@@ -148,7 +148,7 @@ const getConfirmations = async function(permanentUrl) {
 
       const params = {
         name,
-        bid: '1',
+        bid: '1.0',
         file_path: path.join(videosDir, `tyfys_${numberStr}.mp4`),
         validate_file: true,
         optimize_file: true,
