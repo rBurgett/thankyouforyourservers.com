@@ -90,7 +90,6 @@ abbr[data-original-title] {
   text-decoration: underline dotted;
   cursor: help;
   border-bottom: 0;
-  -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
 
@@ -2225,8 +2224,10 @@ input[type="button"].btn-block {
 
 @media (min-width: 576px) {
   .card-columns {
+    -webkit-column-count: 3;
     -moz-column-count: 3;
     column-count: 3;
+    -webkit-column-gap: 1.25rem;
     -moz-column-gap: 1.25rem;
     column-gap: 1.25rem;
     orphans: 1;
@@ -5943,5 +5944,13 @@ a.btn-outline-dark:hover .svg-icon {
 
 a.btn-outline-dark:focus .svg-icon {
   fill: #fff;
+}
+
+.title-header {
+  margin-bottom: 0;
+}
+
+.date-label {
+  margin-bottom: 8px;
 }
 /*# sourceMappingURL=main.css.map */
